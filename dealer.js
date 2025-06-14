@@ -19,8 +19,7 @@ function newClient() {
 	var time = Math.floor((Math.random() * 10000) + 1);
 	var client = Math.floor((Math.random() * 10) + 1);
 	var brand = brandlist[preference];
-	$("#clients_queue").append('<div class="client client_' + client + '" data-brand=' + brand + '"><span class="preference">Client for ' + brand + '</span></div>');
-	setTimeout(function () { newClient(); }, time);
+$("#clients_queue").append('<div class="client client_' + client + '" data-brand=' + brand + '><span class="preference">Client for ' + brand + '</span></div>');	setTimeout(function () { newClient(); }, time);
 	$(".client").draggable({
 		containment: "#salon",
 		revert: "invalid",
@@ -32,12 +31,25 @@ $("document").ready(function (e) {
 
 	$(".place").droppable({
 		drop: function (event, ui) {
-			var client = (ui.draggable);
+			var client = $(ui.draggable);
 			var carPlace = $(this);
-			var carBrand = carPlace.data("brand");
-			alert(carBrand);
-			carPlace.append(client);
-			client.css({ 'position': 'absolute', 'top': '1px', 'left': '1px' });
+			var queueArea = $("#clients_queue");
+
+
+			var clientBrand = client.data('brand').toLowerCase();
+			var placeBrand = carPlace.data('brand').toLowerCase();
+
+			console.log("Client brand: " + clientBrand);
+			console.log("Client brand: " + placeBrand);
+			
+			if (placeBrand == clientBrand) {
+				client.detach();
+				carPlace.append(client);
+				client.css({'position': 'absolute', 'top': '10px', 'left': '10px'});
+			} else {
+				queueArea.prepend(client);
+				client.css({'position': 'relative', 'top': '10px', 'left': '0px'});
+			}
 		}
 	});
 	$("#cashier").droppable({
