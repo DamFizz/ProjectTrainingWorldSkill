@@ -64,6 +64,7 @@ $("document").ready(function (e) {
 		}
 	});
 
+	
 	$("#cashier").droppable({
 		drop: function (event, ui) {
 			var isPurchased = confirm("Would you like to purchase the car?");
