@@ -28,7 +28,7 @@ function newClient() {
 
 	setTimeout(function () {
 		newClient();
-	}, 500);
+	}, 2000);
 }
 
 
@@ -90,7 +90,7 @@ $("document").ready(function (e) {
 });
 
 function updateStats() {
-	$("#clients_served").text(gameStats.clientsServed);
-	$("#cars_sold").text(gameStats.carsSold);
-	$("#amount").text(gameStats.totalAmount);
+	$("#clients_served").text(gameStats.clientsServed + "Served ");
+	$("#cars_sold").text(gameStats.carsSold + "Car Sold ");
+	$("#amount").text(gameStats.totalAmount + " €");
 }
