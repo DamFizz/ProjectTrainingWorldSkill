@@ -33,16 +33,27 @@ $("document").ready(function(e) {
     });
 	$( "#cashier" ).droppable({
       drop: function( event, ui ) {
+		var isPurchased = confirm("Would you like to purchase this car?");
+		if(isPurchased == true){
+			gameStats.clientServed++;
+			gameStats.totalAmount = gameStats.totalAmount + carPrices.Porsche;
+			gameStats.carssold++;
+		}else{
+				gameStats.clientServed++;
+			}
        gameStats.totalAmount = gameStats.totalAmount + carPrices.BMW;
 		gameStats.clientServed++;
 		gameStats.carssold++;
        updateStats();
+		ui.draggable.remove();
+		updateStats();
       }
     });
 	$( "#exit" ).droppable({
       drop: function( event, ui ) {
 		gameStats.clientServed++;
 		updateStats();
+		ui.draggable.remove();
       }
     });
 });
