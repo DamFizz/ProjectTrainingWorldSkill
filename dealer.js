@@ -132,6 +132,8 @@ $("document").ready(function (e) {
 					"No": function () {
 						$(this).dialog("close");
 					}
+				},
+				close: function () {
 				}
 			});
 
