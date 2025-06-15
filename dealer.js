@@ -97,10 +97,17 @@ $("document").ready(function (e) {
 
 	$("#cashier").droppable({
 		drop: function (event, ui) {
-			var isPurchased = confirm("Would you like to purchase the car?");
 			var client = $(ui.draggable);
+			var queueArea = $("#clients_queue");
 			var carBrand = client.data('brand').toLowerCase();
 			var carPrice = carPrices[carBrand];
+
+			if (placeOccupied[carBrand] == false) {
+				removeClientToQueue(client, queueArea);
+				return;
+			}
+
+			var isPurchased = confirm("Would you like to purchase the car?");
 
 			if(isPurchased == true){
 				gameStats.clientsServed++;
@@ -144,4 +151,9 @@ function updateSold() {
 			}
 		});
 	}
+}
+
+function removeClientToQueue(client, queueArea){
+	queueArea.prepend(client);
+	client.css({'position': 'relative', 'top': '10px', 'left': '0px'});
 }
