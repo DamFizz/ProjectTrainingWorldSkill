@@ -86,7 +86,12 @@ $("document").ready(function (e) {
 			placeOccupied[carBrand] = false;
 			
 			updateStats()
-			client.remove();
+
+			client.addClass('client-animation')
+
+			setTimeout(() => {
+				client.remove();
+			}, 1000)
 		}
 	});
 
@@ -109,7 +114,12 @@ $("document").ready(function (e) {
 			placeOccupied[carBrand] = false;
 			
 			updateStats()
-			$(ui.draggable).remove();
+			
+			client.addClass('client-animation')
+
+			setTimeout(() => {
+				client.remove();
+			}, 1000)
 		}
 	});
 });
@@ -129,9 +139,7 @@ function updateSold() {
 		var currentStock = carBrandStock[brand];
 
 		carImages.each(function(index) {
-			if (index < currentStock) {
-				$(this).attr("src", $(this).data('original-src'));
-			} else {
+			if ((index + 1) > currentStock) {
 				$(this).attr("src", "images/Sold.jpg");
 			}
 		});
