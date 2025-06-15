@@ -91,7 +91,7 @@ $("document").ready(function (e) {
 });
 
 function updateStats() {
-	$("#clients_served").text(gameStats.clientsServed + "Served ");
-	$("#cars_sold").text(gameStats.carsSold + "Car Sold ");
+	$("#clients_served").text(gameStats.clientsServed + " Clients");
+	$("#cars_sold").text(gameStats.carsSold + " Cars");
 	$("#amount").text(gameStats.totalAmount + " €");
 }
